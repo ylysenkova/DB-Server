@@ -2,9 +2,9 @@ package com.lysenkova.queryapp;
 
 import com.lysenkova.queryapp.entity.Request;
 import com.lysenkova.queryapp.entity.Response;
-import com.lysenkova.queryapp.generator.JSONResponseGenerator;
+import com.lysenkova.queryapp.generator.json.JSONResponseGenerator;
 import com.lysenkova.queryapp.generator.ResponseGenerator;
-import com.lysenkova.queryapp.parser.JSONRequestParser;
+import com.lysenkova.queryapp.parser.json.JSONRequestParser;
 import com.lysenkova.queryapp.parser.RequestParser;
 import com.lysenkova.queryapp.queryexecutor.QueryExecutor;
 import org.slf4j.Logger;

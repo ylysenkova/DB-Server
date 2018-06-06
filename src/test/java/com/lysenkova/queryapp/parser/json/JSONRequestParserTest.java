@@ -1,7 +1,8 @@
-package com.lysenkova.queryapp.parser;
+package com.lysenkova.queryapp.parser.json;
 
 import com.lysenkova.queryapp.entity.Request;
 import com.lysenkova.queryapp.entity.metadata.Column;
+import com.lysenkova.queryapp.parser.json.JSONRequestParser;
 import org.junit.Test;
 
 import java.io.*;
@@ -13,9 +14,9 @@ import static org.junit.Assert.*;
 public class JSONRequestParserTest {
 
     @Test
-    public void parseCreateQueryForSchema() throws IOException {
+    public void parseCreateQueryForSchema()  {
         JSONRequestParser parser = new JSONRequestParser();
-        InputStream inputStream = new ByteArrayInputStream("{\"header\":{\"type\":\"create\"},\"entity\":\"schema\",\"name\":\"soap\",\"columns\":null}\r\n;".getBytes());
+        InputStream inputStream = new ByteArrayInputStream("{\"header\":{\"type\":\"create\"},\"entity\":\"schema\",\"name\":\"soap\",\"columns\":null}\r\nend".getBytes());
         BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
         Request request = parser.parseCreateQuery(reader);
         String expectedName = "soap";
@@ -28,7 +29,7 @@ public class JSONRequestParserTest {
         JSONRequestParser parser = new JSONRequestParser();
         InputStream inputStream = new ByteArrayInputStream(("{\"header\":{\"type\":\"create\"},\"entity\":\"table\",\"name\":\"soap\"," +
                 "\"columns\":[{\"name\" :\"id\", \"dataType\" :\"BIGINT\"}, " +
-                "{\"name\" :\"name\", \"dataType\" :\"VARCHAR(255)\"}]}\r\n;").getBytes());
+                "{\"name\" :\"name\", \"dataType\" :\"VARCHAR(255)\"}]}\r\nend").getBytes());
         BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
         Request request = parser.parseCreateQuery(reader);
         String expectedTable = "soap";
@@ -46,7 +47,7 @@ public class JSONRequestParserTest {
         JSONRequestParser parser = new JSONRequestParser();
         InputStream inputStream = new ByteArrayInputStream(("{\"header\":{\"type\":\"create\"},\"entity\":\"table\",\"name\":\"soap\"," +
                 "\"columns\":[{\"name\" :\"id\", \"dataType\" :\"BIGINT\"}, " +
-                "{\"name\" :\"name\", \"dataType\" :\"VARCHAR(255)\"}]}\r\n;").getBytes());
+                "{\"name\" :\"name\", \"dataType\" :\"VARCHAR(255)\"}]}\r\nend").getBytes());
         BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
         Request request = parser.parse(reader);
         String expectedEntity = "table";

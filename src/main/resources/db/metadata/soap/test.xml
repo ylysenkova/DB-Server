@@ -1,0 +1,1 @@
+<?xml version="1.0" ?><columns><column name="id"><type>int</type></column><column name="name"><type>varchar(255)</type></column></columns>

@@ -1,8 +1,9 @@
-package com.lysenkova.queryapp.generator;
+package com.lysenkova.queryapp.generator.json;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.lysenkova.queryapp.entity.Response;
+import com.lysenkova.queryapp.generator.ResponseGenerator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
