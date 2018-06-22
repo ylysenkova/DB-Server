@@ -15,6 +15,7 @@ public class Column {
         this.dataType = dataType;
     }
 
+
     public Column(String name, String dataType, String value) {
         this.name = name;
         this.dataType = dataType;

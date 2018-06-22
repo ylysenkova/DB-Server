@@ -1,7 +1,6 @@
 package com.lysenkova.queryapp.generator.json;
 
 import com.lysenkova.queryapp.entity.Response;
-import com.lysenkova.queryapp.generator.json.JSONResponseGenerator;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
@@ -16,7 +15,7 @@ public class JSONResponseGeneratorTest {
         response.setEntityName("soap");
 
         JSONResponseGenerator generator = new JSONResponseGenerator();
-        String expected = "{\"message\":\"Schema created successfully\",\"entity\":\"schema\",\"entityName\":\"soap\"}";
+        String expected = "{\"message\":\"Schema created successfully\",\"entity\":\"schema\",\"entityName\":\"soap\",\"selectResult\":null}";
         String actual = generator.createResponse(response).trim();
         assertEquals(expected, actual);
 

@@ -38,8 +38,8 @@ public class CreateQueryExecutorTest {
         request.setName("soup");
         CreateQueryExecutor queryExecutor = new CreateQueryExecutor("src\\test\\resources\\db\\");
         queryExecutor.createSchema(request);
-        File file = new File("src\\test\\resources\\db\\" + request.getName() + ".xml");
-        assertEquals("soup.xml", file.getName());
+        File file = new File("src\\test\\resources\\db\\" + request.getName());
+        assertEquals("soup", file.getName());
     }
 
     @Test
@@ -51,15 +51,15 @@ public class CreateQueryExecutorTest {
         Request request = new Request();
         Map<String, String> header = new HashMap<>();
         header.put("type", SQLType.valueOf("CREATE").getName());
-        header.put("schema", "soap");
+        header.put("schema", "soup");
         request.setHeader(header);
         request.setEntity("table");
-        request.setName("soap");
+        request.setName("test");
         request.setColumns(columns);
         CreateQueryExecutor queryExecutor = new CreateQueryExecutor("src\\test\\resources\\db\\");
         queryExecutor.createTable(request);
-        File file = new File("src\\test\\resources\\db\\soap\\" + request.getName() + ".xml");
-        assertEquals("soap.xml", file.getName());
+        File file = new File("src\\test\\resources\\db\\" + request.getName() + ".xml");
+        assertEquals("test.xml", file.getName());
     }
 
     @After

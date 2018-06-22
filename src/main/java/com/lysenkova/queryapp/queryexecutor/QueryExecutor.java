@@ -17,7 +17,7 @@ public class QueryExecutor {
 
     public Response executeQuery(Request request) {
         LOGGER.info("Starting execution of query.");
-        if(SQLType.CREATE==SQLType.valueOf(request.getHeader().get("type"))) {
+        if (SQLType.CREATE == SQLType.valueOf(request.getHeader().get("type"))) {
             CreateQueryExecutor createExecutor = new CreateQueryExecutor(path);
             if ("schema".equalsIgnoreCase(request.getEntity())) {
                 response = createExecutor.createSchema(request);
@@ -27,16 +27,17 @@ public class QueryExecutor {
                 response = new Response();
                 response.setMessage("Wrong type of entity. Should be \"schema\" or \"table\"");
             }
-        } else if (SQLType.INSERT==SQLType.valueOf(request.getHeader().get("type"))) {
+        } else if (SQLType.INSERT == SQLType.valueOf(request.getHeader().get("type"))) {
             InsertQueryExecutor insertExecutor = new InsertQueryExecutor(path);
             response = insertExecutor.insertData(request);
+        } else if (SQLType.SELECT == SQLType.valueOf(request.getHeader().get("type"))) {
+            SelectQueryExecutor selectExecutor = new SelectQueryExecutor(path);
+            response = selectExecutor.selectData(request);
         }
 
         LOGGER.info("Query executed.");
         return response;
     }
-
-
 
 
 }

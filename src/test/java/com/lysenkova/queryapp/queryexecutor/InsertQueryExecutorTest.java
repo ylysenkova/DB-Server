@@ -21,7 +21,7 @@ public class InsertQueryExecutorTest {
         Request request = new Request();
         Map<String, String> header = new HashMap<>();
         header.put("type", "INSERT");
-        header.put("schema", "soap");
+        header.put("schema", "soup");
         request.setHeader(header);
         request.setEntity("table");
         request.setName("test");
@@ -40,7 +40,7 @@ public class InsertQueryExecutorTest {
 
     @After
     public void clean() {
-        File fileTable = new File("src\\test\\resources\\db\\data\\soap\\");
+        File fileTable = new File("src\\test\\resources\\db\\data\\soup\\");
         File[] filesTable = fileTable.listFiles();
         for (File file : filesTable) {
             file.delete();

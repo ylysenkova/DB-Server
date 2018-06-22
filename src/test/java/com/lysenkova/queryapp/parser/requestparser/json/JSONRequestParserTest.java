@@ -1,8 +1,8 @@
-package com.lysenkova.queryapp.parser.json;
+package com.lysenkova.queryapp.parser.requestparser.json;
 
 import com.lysenkova.queryapp.entity.Request;
 import com.lysenkova.queryapp.entity.metadata.Column;
-import com.lysenkova.queryapp.parser.json.JSONRequestParser;
+import com.lysenkova.queryapp.parser.requestparser.json.JSONRequestParser;
 import org.junit.Test;
 
 import java.io.*;

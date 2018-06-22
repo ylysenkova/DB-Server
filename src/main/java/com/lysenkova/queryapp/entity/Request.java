@@ -10,6 +10,7 @@ public class Request {
     private String entity;
     private String name;
     private List<Column> columns;
+    private List<Column> conditions;
 
     public Request() {
     }
@@ -46,13 +47,22 @@ public class Request {
         this.columns = columns;
     }
 
+    public List<Column> getConditions() {
+        return conditions;
+    }
+
+    public void setConditions(List<Column> conditions) {
+        this.conditions = conditions;
+    }
+
     @Override
     public String toString() {
         return "Request{" +
                 "header=" + header +
-                ", com.lysenkova.queryapp.entity='" + entity + '\'' +
+                ", entity='" + entity + '\'' +
                 ", name='" + name + '\'' +
                 ", columns=" + columns +
+                ", conditions=" + conditions +
                 '}';
     }
 }

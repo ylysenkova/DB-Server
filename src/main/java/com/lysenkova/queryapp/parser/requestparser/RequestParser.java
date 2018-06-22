@@ -1,4 +1,4 @@
-package com.lysenkova.queryapp.parser;
+package com.lysenkova.queryapp.parser.requestparser;
 
 
 import com.lysenkova.queryapp.entity.Request;

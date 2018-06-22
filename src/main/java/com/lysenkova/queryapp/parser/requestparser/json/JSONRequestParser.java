@@ -1,9 +1,9 @@
-package com.lysenkova.queryapp.parser.json;
+package com.lysenkova.queryapp.parser.requestparser.json;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.lysenkova.queryapp.entity.Request;
 import com.lysenkova.queryapp.entity.SQLType;
-import com.lysenkova.queryapp.parser.RequestParser;
+import com.lysenkova.queryapp.parser.requestparser.RequestParser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -17,10 +17,7 @@ public class JSONRequestParser implements RequestParser {
     private Request request;
 
     public Request parse(BufferedReader reader) {
-//        SQLType sqlType = getQueryType(reader);
-//        if(SQLType.CREATE == sqlType) {
-            request = parseCreateQuery(reader);
-
+        request = parseCreateQuery(reader);
         return request;
     }
 
@@ -34,6 +31,7 @@ public class JSONRequestParser implements RequestParser {
             }
             ObjectMapper mapper = new ObjectMapper();
             request = mapper.readValue(requestBuilder.toString(), Request.class);
+            validateSqlType(request.getHeader().get("type"));
 
             LOGGER.info("Request: {} parsed.", request);
         } catch (IOException e) {
@@ -42,19 +40,6 @@ public class JSONRequestParser implements RequestParser {
         }
         return request;
     }
-
-//
-//    private SQLType getQueryType(BufferedReader reader) {
-//        String queryType;
-//        try {
-//            queryType = reader.readLine();
-//            validateSqlType(queryType);
-//        } catch (IOException e) {
-//            LOGGER.info("Error during reading query type.");
-//            throw new RuntimeException("Error during reading query type.", e);
-//        }
-//        return SQLType.valueOf(queryType);
-//    }
 
     private void validateSqlType(String sqlType) {
         try {

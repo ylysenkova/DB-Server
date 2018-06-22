@@ -78,10 +78,12 @@ public class CreateQueryExecutor {
     private void writeTableMetadata(Request request, File file) {
         LOGGER.info("Writing columns into table file: {}", file);
         List<Column> columns = request.getColumns();
+        XMLStreamWriter writer = null;
+        FileOutputStream stream = null;
         try {
             XMLOutputFactory factory = XMLOutputFactory.newFactory();
-            FileOutputStream stream = new FileOutputStream(file);
-            XMLStreamWriter writer = factory.createXMLStreamWriter(stream);
+             stream = new FileOutputStream(file);
+             writer = factory.createXMLStreamWriter(stream);
             writer.writeStartDocument();
             writer.writeStartElement("columns");
             for (Column column : columns) {
@@ -95,12 +97,18 @@ public class CreateQueryExecutor {
             writer.writeEndElement();
             writer.writeEndDocument();
 
-            writer.flush();
-            writer.close();
-            stream.close();
+
         } catch (Exception e) {
             LOGGER.error("Error during writing into table file: {}", file);
             throw new RuntimeException("Error during writing into table file.", e);
+        } finally {
+            try {
+                writer.flush();
+                writer.close();
+                stream.close();
+            } catch (Exception e) {
+                LOGGER.error("Error during closing the file: {}", file);
+            }
         }
         LOGGER.info("Columns wrote into table file: {}", file);
     }
