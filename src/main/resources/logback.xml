@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration>
 
-    <appender name="fileAppender" class="ch.qos.logback.core.rolling.RollingFileAppender">
+    <appender entityName="fileAppender" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
             <file>src/log/log.log</file>
             <FileNamePattern>src/log/log_%d{yyyy-MM-dd}.log</FileNamePattern>
